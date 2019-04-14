@@ -13,23 +13,35 @@ function buttonClicked() {
 
 function GetNewBalance(balance) {
     let dice = [];
+
     RollDice(dice);
+    
     let dice1txt = "images/dice-" + dice[0] + ".jpg";
     let dice2txt = "images/dice-" + dice[1] + ".jpg";
+
     document.getElementById("image1").src = dice1txt;
     document.getElementById("image2").src = dice2txt;
-    if (dice[0] == dice[1] || dice[0] + dice[1] == 7 || dice[0] + dice[1] == 11) {
+
+    if (dice[0] == dice[1]) {
         balance++;
-        (document.getElementById("status")).innerText = "You Win!";
+        (document.getElementById("status")).innerText = "You Win! You rolled a pair!";
+    }
+    else if (dice[0] + dice[1] == 7) {
+        balance++;
+        (document.getElementById("status")).innerText = "You Win! You rolled a 7!";
+    }
+     else if (dice[0] + dice[1] == 11) {
+        balance++;
+        (document.getElementById("status")).innerText = "You Win! You rolled an 11!";
     }
     else {
         balance--;
         (document.getElementById("status")).innerText = "You Lost!";
     }
 
-    if (balance === 0) {
-        (document.getElementById("status")).innerText = "GAME OVER!";
-        (document.getElementById("ButtonBet")).style.visibility = 'hidden';
+    if (balance == 0) {
+        (document.getElementById("status")).innerText = "Game over! Thanks for playing!";
+        (document.getElementById("ButtonBet")).style.display = "none";
     }
 
     let turnCount = (document.getElementById("turnCount")).innerText;
